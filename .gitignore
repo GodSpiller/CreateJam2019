@@ -25,3 +25,5 @@ sysinfo.txt
 *.unitypackage
 .DS_Store
 .vs
+*.csproj
+CreateJam2019/Assets/Scenes/SampleScene.unity
