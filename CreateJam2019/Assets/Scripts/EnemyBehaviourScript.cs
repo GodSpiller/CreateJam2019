@@ -14,21 +14,29 @@ public class EnemyBehaviourScript : MonoBehaviour
         Rigidbody2D rb2d = GetComponent<Rigidbody2D>();
 
         health = 1;
+
+        gameObject.AddComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void OnCollosionEnter2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "bullet")
+        if (coll.gameObject.tag == "Bullet")
         {
+            changeSprite();
             health -= 1;
             Debug.Log(health);
-            Debug.Log("avav");
+            Destroy(coll.gameObject);
         }
+    }
+
+    void changeSprite()
+    {
+        GameObject.Find("sprite").GetComponent<SpriteRenderer>().sprite = Resources.Load("BadGuyDead", typeof(Sprite)) as Sprite;
     }
 }
