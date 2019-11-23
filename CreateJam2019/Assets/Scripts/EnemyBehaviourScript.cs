@@ -4,31 +4,52 @@ using UnityEngine;
 
 public class EnemyBehaviourScript : MonoBehaviour
 {
-    private int health;
+    private bool _isAlive = true;
+    public bool IsAlive
+    {
+        get => _isAlive;
+        set
+        {
+            _isAlive = value;
+            _enemyController.CheckWinState();
+        }
+    }
 
-    private Rigidbody2D rb2d;
+    private EnemyController _enemyController;
+    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Sprite _deadSprite;
+    [SerializeField] private Transform _deadPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody2D rb2d = GetComponent<Rigidbody2D>();
-
-        health = 1;
+        _enemyController = transform.parent.GetComponent<EnemyController>();
+        _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void OnCollosionEnter2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "bullet")
+        if (coll.gameObject.tag == "Bullet") 
         {
-            health -= 1;
-            Debug.Log(health);
-            Debug.Log("avav");
+            var brb = coll.gameObject.GetComponent<Rigidbody2D>();
+            if (brb.velocity.magnitude > 20f)
+            {
+                IsAlive = false;
+                changeSprite();
+                Destroy(coll.gameObject);
+            }
         }
+    }
+
+    void changeSprite()
+    {
+        _spriteRenderer.sprite = _deadSprite;
+        transform.Find("Sprite").localPosition = _deadPosition.localPosition;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
@@ -25,13 +26,16 @@ public class Gun : MonoBehaviour
 
     [SerializeField] public int Ammo;
 
+    public bool Active = false;
+
+    private float _lastWallHitTime;
+
 
     void Start()
     {
         _nozzle = transform.Find("Nozzle");
         _throwDirection = transform.Find("ThrowDirection");
         _casingExit = transform.Find("CasingExit");
-
     }
 
     void Update()
@@ -41,7 +45,6 @@ public class Gun : MonoBehaviour
 
         if (_rigidBody)
         {
-            Debug.Log(_rigidBody.angularVelocity);
             if (_rigidBody.angularVelocity > _minAngularVelocity)
             {
                 _rigidBody.angularDrag = 0.3f;
@@ -52,13 +55,7 @@ public class Gun : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Time.timeScale = 0.1f;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-            Time.timeScale = 1f;
+        
     }
 
     public void Throw()
@@ -74,15 +71,20 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+        if (!Active)
+            return;
+
         if (Ammo == 0)
             return;
         Ammo--;
 
-        Debug.Log("Shoot");
-
-        // Add force to gun
-        _rigidBody.AddForce(-_nozzle.right * _kickbackForce);
-        _rigidBody.AddTorque(_kickbackTorque);
+        if (_rigidBody)
+        {
+            // Add force to gun
+            _rigidBody.velocity = Vector3.zero;
+            _rigidBody.AddForce(-_nozzle.right * _kickbackForce);
+            _rigidBody.AddTorque(_kickbackTorque);
+        }
 
         // Bullet
         var newBullet = Instantiate(Bullet, _nozzle.position, _nozzle.rotation);

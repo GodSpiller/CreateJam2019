@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 723738954615157534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 723738954956083937}
   m_RootOrder: 0
@@ -162,11 +162,12 @@ MonoBehaviour:
   _bulletForce: 1000
   _casingForce: 100
   _kickbackTorque: 25
-  _kickbackForce: 600
-  _minAngularVelocity: 320
+  _kickbackForce: 300
+  _minAngularVelocity: 500
   Bullet: {fileID: 2461746640495214821, guid: 24d8d53df9a62c84eb3a77445a374e0a, type: 3}
   Casing: {fileID: 5743272956811153666, guid: caf15b33ced7a3642a27c35205ae5ac1, type: 3}
   Ammo: 5
+  Active: 0
 --- !u!60 &723738954956083939
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723738955247961814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48, y: 0.25100005, z: 0}
+  m_LocalPosition: {x: 0.468, y: 0.259, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 723738954956083937}

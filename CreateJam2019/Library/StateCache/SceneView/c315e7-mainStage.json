@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":0.4807077944278717,"y":0.5480615496635437,"z":-177.58328247070313},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":7.4686102867126469,"orthographic":true}
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-3.368539810180664,"y":-0.7003605961799622,"z":0.24257811903953553},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":12.844334602355957,"orthographic":true}
->>>>>>> parent of b7fa8f2... Revert "Added Player and StartPlatform"

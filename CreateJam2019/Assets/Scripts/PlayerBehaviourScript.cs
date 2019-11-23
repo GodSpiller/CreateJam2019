@@ -12,12 +12,14 @@ public class PlayerBehaviourScript : MonoBehaviour
 
     private Transform _gunPosition;
 
+    [SerializeField] private SpriteRenderer _slothRenderer;
+
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
         _gunPosition = transform.Find("GunPosition");
+        _slothRenderer.enabled = false;
     }
 
     void Update()
@@ -36,17 +38,32 @@ public class PlayerBehaviourScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && _pickedUpGun)
         {
-            Debug.Log("Throw");
             _pickedUpGun.Throw();
-            UnityEngine.Camera.main.gameObject.GetComponent<Camera>().Target = _pickedUpGun.transform;
+            Debug.Log(Camera.main.gameObject.name);
+            var cc = Camera.main.gameObject.GetComponent<CameraController>().Target = _pickedUpGun.transform;
 
             _pickedUpGun = null;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale = 0.1f;
+            _slothRenderer.enabled = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Time.timeScale = 1f;
+            _slothRenderer.enabled = false;
+        }
+
     }
 
     void PickUpGun(GameObject gunObj, Gun gun)
     {
         _pickedUpGun = gun;
+        _pickedUpGun.Active = true;
         gunObj.transform.parent = _gunPosition;
         gunObj.transform.localPosition = Vector3.zero;
         gunObj.transform.localRotation = Quaternion.identity;
