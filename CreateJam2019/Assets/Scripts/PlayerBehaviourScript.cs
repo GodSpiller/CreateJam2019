@@ -12,8 +12,6 @@ public class PlayerBehaviourScript : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
-        Debug.Log("djkaskd");
     }
 
     // Update is called once per frame
