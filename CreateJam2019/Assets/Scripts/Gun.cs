@@ -32,15 +32,13 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Throw();
-
         if (Input.GetMouseButtonDown(0))
             Shoot();
     }
 
     public void Throw()
     {
+        transform.parent = null;
         _rigidBody = gameObject.AddComponent<Rigidbody2D>();
 
         Debug.Log(_throwDirection.right);
@@ -58,7 +56,8 @@ public class Gun : MonoBehaviour
         var newBullet = Instantiate(Bullet, _nozzle.position, _nozzle.rotation);
 
         var nbrb = newBullet.GetComponent<Rigidbody2D>();
-        nbrb.velocity = _rigidBody.velocity;
+        if (_rigidBody)
+            nbrb.velocity = _rigidBody.velocity;
         nbrb.AddForce(_nozzle.transform.right * _bulletForce);
     }
 }

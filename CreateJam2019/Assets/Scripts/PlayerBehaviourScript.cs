@@ -8,15 +8,11 @@ public class PlayerBehaviourScript : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
-        Debug.Log("djkaskd");
     }
 
-    // Update is called once per frame
     void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -29,5 +25,10 @@ public class PlayerBehaviourScript : MonoBehaviour
         }
 
         rb2d.velocity = movement * speed;
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log(col.gameObject.name);
     }
 }
